@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:AppList;assembly=AppList"
+             xmlns:viewModels="clr-namespace:AppList.ViewModels;assembly=AppList"
+             x:Class="AppList.AddOrUpdateProducts">
+
+    <ContentPage.BindingContext>
+        <viewModels:ViewAddOrEdit/>
+    </ContentPage.BindingContext>
+
+    <ContentPage.Content>
+        <StackLayout>
+            <Entry x:Name="txtName" Placeholder="Nombre del producto" Text="{Binding Product.ProductName}"></Entry>
+            <Entry x:Name="txtPrice" Placeholder="Precio del producto" Text="{Binding Product.PriceProduct}"></Entry>
+            <Entry x:Name="txtQuanty" Placeholder="Cantidad del producto" Text="{Binding Product.QuantyProduct}"></Entry>
+            <Entry x:Name="txtDescrip" Placeholder="Descripcion del producto" Text="{Binding Product.Description}"></Entry>
+            <Button x:Name="btnRegister" Text="Enviar" Clicked="BtnRegister_OnClicked" ></Button>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

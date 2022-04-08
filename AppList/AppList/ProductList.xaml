@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:AppList"
+             xmlns:viewModels="clr-namespace:AppList.ViewModels;assembly=AppList"
+             x:Class="AppList.ProductList"
+             Title="Lista de Productos"
+             BackgroundImageSource="https://i.pinimg.com/236x/54/bd/4a/54bd4a24d5a637dad83ee40185d957a2.jpg">
+
+    <ContentPage.BindingContext>
+        <viewModels:ViewInfoProducts/>
+    </ContentPage.BindingContext>
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem x:Name="ItemAdd" Text="Añadir" Clicked="ItemAdd_OnClicked"></ToolbarItem>
+    </ContentPage.ToolbarItems>
+
+    <ContentPage.Content>
+        
+        <StackLayout>
+            
+                    <SearchBar x:Name="Bar" Placeholder="Nombre de Producto" TextChanged="Bar_OnTextChanged" PlaceholderColor="black"></SearchBar>
+            <RefreshView Refreshing="RefreshView_OnRefreshing" x:Name="Reload" >
+                <ScrollView>
+                    <ListView ItemsSource="{Binding ItemList}"
+                      SeparatorVisibility="None" SelectionMode="None" x:Name="ListProducts" BackgroundColor="Aqua">
+                        <ListView.Header>
+
+                            <Label Text="Productos" FontSize="Large" TextColor="SaddleBrown"
+                           HorizontalTextAlignment="Center" FontAttributes="Italic" ></Label>
+                        </ListView.Header>
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Label Grid.Column="0"  VerticalTextAlignment="Center" Text="{Binding ProductId}"
+                                       FontSize="Body"/>
+                                        <Label Grid.Column="1" VerticalTextAlignment="Center" Text="{Binding ProductName}"
+                                       FontSize="Body"/>
+                                        <Image Grid.Column="2" Source="https://cdn-icons-png.flaticon.com/512/86/86151.png"
+                                       WidthRequest="30" HeightRequest="30" HorizontalOptions="End">
+                                            <Image.GestureRecognizers>
+                                                <TapGestureRecognizer x:Name="TapDetails" Tapped="TapDetails_OnTapped"
+                                                              CommandParameter="{Binding ProductId}"/>
+                                            </Image.GestureRecognizers>
+                                        </Image>
+                                        <Grid Grid.Column="3" HorizontalOptions="Start">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="*"/>
+                                                <RowDefinition Height="*"/>
+                                            </Grid.RowDefinitions>
+                                            
+                                            <Image Source="https://cdn-icons-png.flaticon.com/512/860/860814.png"
+                                                   WidthRequest="30" HeightRequest="30">
+                                                <Image.GestureRecognizers>
+                                                    <TapGestureRecognizer x:Name="TapEdit" Tapped="TapEdit_OnTapped"
+                                                                  CommandParameter="{Binding ProductId}"/>
+                                                </Image.GestureRecognizers>
+                                            </Image>
+                                            <Image Grid.Row="1" Source="https://cdn-icons-png.flaticon.com/512/1345/1345874.png"
+                                           WidthRequest="30" HeightRequest="30">
+                                                <Image.GestureRecognizers>
+                                                    <TapGestureRecognizer x:Name="TapDelete" Tapped="TapDelete_OnTapped"
+                                                                  CommandParameter="{Binding ProductId}"/>
+                                                </Image.GestureRecognizers>
+                                            </Image>
+                                        </Grid>
+                                    </Grid>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </ScrollView>
+            </RefreshView>
+                  
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

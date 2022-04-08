@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:models="clr-namespace:AppList.Models;assembly=AppList"
+             xmlns:viewModels="clr-namespace:AppList.ViewModels;assembly=AppList"
+             x:Class="AppList.DetailsProduct">
+    <ContentPage.BindingContext>
+        <viewModels:ViewAddOrEdit/>
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <StackLayout>
+            <Entry x:Name="txtName" Text="{Binding Product.ProductName}"
+                   IsReadOnly="True"></Entry>
+            <Entry x:Name="txtPrice" Text="{Binding Product.PriceProduct}"
+                    IsReadOnly="True"></Entry>
+            <Entry x:Name="txtQuanty" Text="{Binding Product.QuantyProduct}"
+                   IsReadOnly="True"></Entry>
+            <Entry x:Name="txtDescrip" Text="{Binding Product.Description}"
+                   IsReadOnly="True"></Entry>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
